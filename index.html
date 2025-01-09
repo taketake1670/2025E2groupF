@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, in
+    itial-scale=1.0">
+    <title>東京電子専門学校 校内案内サービス</title>
+    <style>
+        .left-align {
+            text-align: left;
+        }
+
+        .center-align {
+            text-align: center;
+        }
+
+        .right-align {
+            text-align: right;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        select {
+            margin: 0 auto;
+            display: block;
+            padding: 10px 5px;
+            background-color: black;
+            color: white;
+            font-size: 1em;
+        }
+
+        /* ラジオボタンラベルのスタイル */
+        .radio-group {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .radio-group label {
+            margin: 0 15px;
+            font-size: 16px;
+            background-color: black;
+            /* 背景色を黒に */
+            color: white;
+            /* 文字色を白に */
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .radio-group label:hover {
+            background-color: #555;
+            /* ホバー時の色変更 */
+        }
+
+        iframe {
+            width: 80%;
+            height: 250px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        button {
+            padding: 15px 60px;
+            /* パディングを大きくしてボタンを大きくします */
+            font-size: 1.5em;
+            /* フォントサイズを大きくします */
+            color: white;
+            /* 文字色を白に */
+            background-color: black;
+            /* ボタンの背景色をオレンジ色に */
+            border: none;
+            border-radius: 8px;
+            /* 角を丸くします */
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            transition: background-color 0.3s ease;
+            /* ホバー時の色変更を滑らかに */
+        }
+
+        /* タイトルに黒色の背景色をつける */
+        h1.center-align {
+            background-color: black;
+            color: white;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="center-align">東京電子<br>校内案内サービス</h1>
+    <p class="center-align">目的の部屋を選んでください</p>
+
+    <!-- 部屋選択フォーム -->
+    <div class="radio-group">
+        <label>
+            <input type="radio" name="options" value="roomnum" onclick="showDropdown()"> 講義室
+        </label>
+        <label>
+            <input type="radio" name="options" value="roomnum2" onclick="showDropdown()"> 実習室
+        </label>
+    </div>
+
+    <p class="center-align">目的の部屋番号を選んでください</p>
+    <form action="#">
+        <select id="roomnum-dropdown" style="display: none;">
+            <option value="2051">2051 講義室</option>
+            <option value="2052">2052 講義室</option>
+            <option value="2053">2053 講義室</option>
+            <option value="2061">2061 講義室</option>
+            <option value="2062">2062 講義室</option>
+            <option value="2063">2063 講義室</option>
+            <option value="1033">1033 講義室</option>
+            <option value="1053">1053 講義室</option>
+            <option value="1073">1073 講義室</option>
+            <option value="1081">1081 講義室</option>
+            <option value="1082">1082 講義室</option>
+            <option value="1113">1113 講義室</option>
+            <option value="1122">1122 講義室</option>
+            <option value="1132">1132 講義室</option>
+            <option value="1133">1133 講義室</option>
+        </select>
+
+        <select id="roomnum2-dropdown" style="display: none;">
+            <option value="2041">2041 実習室</option>
+            <option value="2071">2071 実習室</option>
+            <option value="2073">2073 実習室</option>
+            <option value="1041">1041 実習室</option>
+            <option value="1051">1051 実習室</option>
+            <option value="1061">1061 実習室</option>
+            <option value="1071">1071 実習室</option>
+            <option value="1111">1111 実習室</option>
+            <option value="1121">1121 実習室</option>
+            <option value="1131">1131 実習室</option>
+        </select>
+    </form>
+
+    <div class="center-align">
+        <button onclick="submitForm()">決定</button>
+    </div>
+
+    <p class="center-align">
+        <a href="https://tokyo-ec.ac.jp/">東京電子専門学校</a>のホームページはこちら
+    </p>
+
+    <!-- 動画表示 -->
+    <div class="center-align" id="video-container" style="display: none;">
+        <!-- 動画がここに表示されます -->
+    </div>
+
+    <div class="footer">
+        ※歩きスマホはご遠慮ください※
+    </div>
+
+    <script>
+        function showDropdown() {
+            document.getElementById("roomnum-dropdown").style.display = "none";
+            document.getElementById("roomnum2-dropdown").style.display = "none";
+            document.getElementById("video-container").style.display = "none";
+
+            var selectedOption = document.querySelector('input[name="options"]:checked').value;
+
+            if (selectedOption == "roomnum") {
+                document.getElementById("roomnum-dropdown").style.display = "block";
+            } else if (selectedOption == "roomnum2") {
+                document.getElementById("roomnum2-dropdown").style.display = "block";
+            }
+        }
+
+        function submitForm() {
+            const selectedOption = document.querySelector('input[name="options"]:checked').value;
+            const selectedRoom = document.getElementById(selectedOption + "-dropdown").value;
+
+            // 動画URLを対応する部屋番号に基づいて設定
+            const videoUrls = {
+                "roomnum": {
+                    "2051": "https://www.youtube.com/embed/61PeG74cpwM"
+                    // 他の部屋番号も追加
+                },
+                "roomnum2": {
+                    "2041": "https://www.youtube.com/embed/動画ID4"
+                    // 他の部屋番号も追加
+                }
+            };
+
+            const videoUrl = videoUrls[selectedOption] ? videoUrls[selectedOption][selectedRoom] : null;
+
+            if (videoUrl) {
+                document.getElementById("video-container").innerHTML = `
+                    <iframe src="${videoUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                `;
+                document.getElementById("video-container").style.display = "block";
+            } else {
+                document.getElementById("video-container").innerHTML = `
+                    <p>選択された部屋番号には対応する動画がありません。</p>
+                `;
+                document.getElementById("video-container").style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
