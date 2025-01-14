@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, in
-    itial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>東京電子専門学校 校内案内サービス</title>
     <style>
         .left-align {
@@ -107,6 +106,13 @@
             color: white;
             padding: 10px 0;
         }
+
+        /* 背景画像ローテーション */
+        body {
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
+        }
     </style>
 </head>
 
@@ -166,16 +172,33 @@
         <a href="https://tokyo-ec.ac.jp/">東京電子専門学校</a>のホームページはこちら
     </p>
 
+    <p class="center-align">youtubeのフルスクリーン推奨※</p>
+
     <!-- 動画表示 -->
     <div class="center-align" id="video-container" style="display: none;">
         <!-- 動画がここに表示されます -->
     </div>
 
-    <div class="footer">
-        ※歩きスマホはご遠慮ください※
-    </div>
-
     <script>
+        const images = [
+            "url('path/to/your/image1.jpg')", 
+            "url('path/to/your/image2.jpg')", 
+            "url('path/to/your/image3.jpg')"
+        ];
+
+        let currentImageIndex = 0;
+
+        function changeBackgroundImage() {
+            document.body.style.backgroundImage = images[currentImageIndex];
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
+
+        // 5秒ごとに背景を切り替える
+        setInterval(changeBackgroundImage, 5000);
+        
+        // ページ読み込み時に最初の背景を設定
+        changeBackgroundImage();
+        
         function showDropdown() {
             document.getElementById("roomnum-dropdown").style.display = "none";
             document.getElementById("roomnum2-dropdown").style.display = "none";
