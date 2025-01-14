@@ -98,6 +98,12 @@
         </label>
     </div>
 
+    <div class="center-align">
+        <label>
+            <input type="checkbox" id="fromFirstFloor" onclick="showDropdown()"> 一階からの案内を希望
+        </label>
+    </div>
+
     <p class="center-align">目的の部屋番号を選んでください</p>
     <form action="#">
         <select id="roomnum-dropdown" style="display: none;">
@@ -144,8 +150,8 @@
 
     <!-- 動画表示 -->
     <div class="center-align" id="video-container" style="display: none;">
-
     </div>
+
 
     <script>
         function showDropdown() {
@@ -153,7 +159,7 @@
             document.getElementById("roomnum2-dropdown").style.display = "none";
             document.getElementById("video-container").style.display = "none";
 
-            var selectedOption = document.querySelector('input[name="options"]:checked').value;
+            var selectedOption = document.querySelector('input[name="options"]:checked')?.value;
 
             if (selectedOption == "roomnum") {
                 document.getElementById("roomnum-dropdown").style.display = "block";
@@ -165,20 +171,31 @@
         function submitForm() {
             const selectedOption = document.querySelector('input[name="options"]:checked').value;
             const selectedRoom = document.getElementById(selectedOption + "-dropdown").value;
+            const fromFirstFloor = document.getElementById("fromFirstFloor").checked;
 
-            const videoUrls = {
+            const videoUrlsFirstFloor = {
                 "roomnum": {
                     "2051": "https://www.youtube.com/embed/rmiHrX3NMJM?si=6c8X417S_3TEDG6a",
                     "2052": "https://www.youtube.com/embed/rS0jDiL2Jbg?si=t4LKrFLRB_c2NP5M",
                     "2053": "https://www.youtube.com/embed/UZrlzodiVrE?si=3VyqgujXYHWUU5FI"
-
-                    // 他の部屋番号も追加
                 },
                 "roomnum2": {
                     "2041": "https://www.youtube.com/embed/mtnxTWlxX3I?si=NxM5CUH6lqGfIBsM"
-                    // 他の部屋番号も追加
                 }
             };
+
+            const videoUrlsOther = {
+                "roomnum": {
+                    "2051": "https://www.youtube.com/embed/dJp6v5a9i5Y?si=xame9tXyJRzxV1I1", // 他の動画URLを指定
+                    // "2052": "https://www.youtube.com/embed/otherVideo2"
+                },
+                "roomnum2": {
+                    // "2041": "https://www.youtube.com/embed/otherVideo3"
+                }
+            };
+
+            // fromFirstFloor が true の場合、videoUrlsFirstFloor を使用、false の場合は videoUrlsOther を使用
+            const videoUrls = fromFirstFloor ? videoUrlsFirstFloor : videoUrlsOther;
 
             const videoUrl = videoUrls[selectedOption] ? videoUrls[selectedOption][selectedRoom] : null;
 
