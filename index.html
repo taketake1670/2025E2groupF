@@ -182,42 +182,17 @@
             margin-bottom: 100px;
         }
 
-        /* 画像ローテーションのアニメーション */
-        @keyframes image-rotation {
-            0% {
-                opacity: 1;
-                background-image: url('img1.jpg');
-            }
 
-            33% {
-                opacity: 1;
-                background-image: url('img2.jpg');
-            }
-
-            66% {
-                opacity: 1;
-                background-image: url('img3.jpg');
-            }
-
-            100% {
-                opacity: 1;
-                background-image: url('img1.jpg');
-            }
-        }
-
-        /* h1 のスタイルで画像ローテーションを設定 */
         h1.center-align {
             color: white;
-            padding: 80px 0;
+            padding: 50px 0;
             text-align: center;
             margin: 20px auto;
             width: 100%;
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            animation: image-rotation 15s infinite;
-            /* アニメーション適用 */
-            transition: opacity 1s ease-in-out;
+            
         }
     </style>
 </head>
