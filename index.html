@@ -183,34 +183,45 @@
         }
 
         h1.center-align {
-    color: white;
-    padding: 50px 0;
-    text-align: center;
-    margin: 20px auto;
-    width: 100%;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    animation: image-rotation 15s infinite; 
-    transition: opacity 1s ease-in-out;
-}
-
-@keyframes image-rotation {
-    0% {
-        background-image: url('img1.jpg'); 
-    }
-    33% {
-        background-image: url('img2.jpg');
-    }
-    66% {
-        background-image: url('img3.jpg'); 
-    }
-    100% {
-        background-image: url('img1.jpg'); 
-    }
-}
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            margin: 20px auto;
+            width: 100%;
+            background-size: 100% 100%;
+            /* 背景画像のサイズを調整 */
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: image-rotation 15s infinite;
+            transition: opacity 1s ease-in-out;
+        }
 
 
+        @keyframes image-rotation {
+            0% {
+                background-image: url('img1.jpg');
+                background-size: cover;
+                background-position: center center;
+            }
+
+            33% {
+                background-image: url('img2.jpg');
+                background-size: cover;
+                background-position: center center;
+            }
+
+            66% {
+                background-image: url('img3.jpg');
+                background-size: cover;
+                background-position: center center;
+            }
+
+            100% {
+                background-image: url('img1.jpg');
+                background-size: cover;
+                background-position: center center;
+            }
+        }
     </style>
 </head>
 
@@ -318,6 +329,17 @@
     </div>
 
     <script>
+
+        function preloadImages() {
+            const images = ['img1.jpg', 'img2.jpg', 'img3.jpg'];
+            images.forEach((img) => {
+                const image = new Image();
+                image.src = img;
+            });
+        }
+
+        // ページが読み込まれる前に画像を読み込み
+        window.onload = preloadImages;
         var roomNumberTextHidden = false; // フラグの初期化
 
         function showDropdown() {
@@ -383,6 +405,11 @@
                     "2052": "https://www.youtube.com/embed/rS0jDiL2Jbg?si=t4LKrFLRB_c2NP5M",
                     "2053": "https://www.youtube.com/embed/UZrlzodiVrE?si=3VyqgujXYHWUU5FI",
                     "1053": "https://www.youtube.com/embed/BMXT7AcuDYs?si=p5Nc5o5V79HosePb",
+                    //6F
+                    "2061": "https://www.youtube.com/embed/5_4QfB7VkR4?si=PS6sfqnFFOOQQfOt",
+                    "2062": "https://www.youtube.com/embed/6EJ7nzN0-Ic?si=D8C2uNtZFV27TrK7",
+                    "2063": "https://www.youtube.com/embed/V8wv9w-GcpM?si=wqBch2bWQAbEmTks",
+
                 },
                 "roomnum2": {//実習室
                     //4F
@@ -390,6 +417,8 @@
                     "1041": "https://www.youtube.com/embed/De02SH_jGVU?si=hYzgsqumSXHltHkX",
                     //5F
                     "1051": "https://www.youtube.com/embed/AdbLE4LX6sY?si=-OKG6CIrSBKmEVq4",
+                    //6F
+                    "1061": "https://www.youtube.com/embed/SDUSxdNpYoY?si=13XH0GNbwyTD6wtl",
                 }
             };
 
@@ -408,6 +437,10 @@
                     "2052": "https://www.youtube.com/embed/_MS1UAoTyr4?si=VCQSeCMCcXZ5l-R3",
                     "2053": "https://www.youtube.com/embed/2rByxf4G1y8?si=5elUle6acQhadJ1i",
                     "1053": "https://www.youtube.com/embed/EQL5SE8sx94?si=ZAzGfvCPlRXNiVoJ",
+                    //6F
+                    "2061": "https://www.youtube.com/embed/xEPVH1a3DJ4?si=NBJhGE-efVV1G-0a",
+                    "2062": "https://www.youtube.com/embed/sXoNopWy13E?si=Jgufps5ikPn7Cb_6",
+                    "2063": "https://www.youtube.com/embed/KaE-rIfKfHk?si=4iGrrU_I23aJmf5l",
                 },
                 "roomnum2": {//実習室
                     //4F
@@ -415,6 +448,8 @@
                     "1041": "https://www.youtube.com/embed/dMOhWbtGQAo?si=ckFrFW8um0AtEqso",
                     //5F
                     "1051": "https://www.youtube.com/embed/rKeCtckXmmU?si=vrVnqIDtghTP_VQ9",
+                    //6F
+                    "1061": "https://www.youtube.com/embed/RmFOHL0VO2Y?si=5lcpdaZat7u3RZCA",
                 }
             };
 
@@ -434,18 +469,6 @@
                 document.getElementById("video-container").style.display = "block";
             }
         }
-        // 画像を事前に読み込む関数
-        function preloadImages() {
-            const images = ['img1.jpg', 'img2.jpg', 'img3.jpg'];
-            images.forEach((img) => {
-                const image = new Image();
-                image.src = img;
-            });
-        }
-
-        // ページが読み込まれる前に画像を読み込み
-        window.onload = preloadImages;
-
     </script>
 
 </body>
